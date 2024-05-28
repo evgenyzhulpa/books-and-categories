@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: SpringBootRedis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  jpa:
+    # Свойство generate-ddl описывает создание таблиц в БД на основе сущностей Java.
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app_db
+    username: postgres
+    password: postgres
+    hikari:
+      schema: app_schema
+      connection-timeout: 10000
+
+app:
+  redis:
+    enable: true
+  cache:
+    cacheType: redis
+    cacheNames:
+      - bookEntitiesByCategoryName
+      - bookEntityByNameAndAuthor
+    caches:
+      bookEntitiesByCategoryName:
+        expiry: 5m
+      bookEntityByNameAndAuthor:
+        expiry: 5m
